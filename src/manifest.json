@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Refined Gitlab By Canal+",
+  "version": "0.0.0",
+  "homepage_url": "https://github.com",
+  "description": "Add usefull features to the gitlab interface",
+  "icons": {
+    "128": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "32": "icon.png"
+    },
+    "default_popup": "options.html",
+    "default_title": "Refined Gitlab"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "https://gitlab.com/*"
+  ],
+  "optional_permissions": ["http://*/*", "https://*/*"],
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": ["https://*/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
