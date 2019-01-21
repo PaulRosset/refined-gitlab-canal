@@ -3,6 +3,7 @@ import select from 'select-dom';
 
 import fetch from '../utils/api';
 import { getRepoName } from '../utils/page-detect';
+import { get, set } from '../utils/cache';
 
 async function populateChild(repoName, displayAvatarForThumbStruct) {
   for (const mR of displayAvatarForThumbStruct) {
@@ -45,24 +46,20 @@ async function displayUserWhoThumbMR() {
   const repoName = getRepoName(
     select("meta[property='og:title']").getAttribute('content')
   );
-  chrome.storage.local.get([repoName], async function(projectID) {
-    if (projectID[repoName]) {
-      populateChild(projectID[repoName], displayAvatarForThumbStruct);
-    } else {
-      const projects = await fetch(
-        'get',
-        `projects?search=${repoName}&simple=true`
-      );
-      chrome.storage.local.set(
-        {
-          [repoName]: projects.data.filter(elem => elem.name === repoName)[0].id
-        },
-        function(value) {
-          populateChild(value[repoName], displayAvatarForThumbStruct);
-        }
-      );
-    }
-  });
+
+  const projectID = await get([repoName]);
+  if (projectID[repoName]) {
+    populateChild(projectID[repoName], displayAvatarForThumbStruct);
+  } else {
+    const projects = await fetch(
+      'get',
+      `projects?search=${repoName}&simple=true`
+    );
+    const projectIDStored = await set({
+      [repoName]: projects.data.filter(elem => elem.name === repoName)[0].id
+    });
+    populateChild(projectIDStored[repoName], displayAvatarForThumbStruct);
+  }
 }
 
 export default displayUserWhoThumbMR;

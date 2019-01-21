@@ -3257,22 +3257,10 @@ watchpack@^1.5.0:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
 
-webext-content-script-ping@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/webext-content-script-ping/-/webext-content-script-ping-2.0.1.tgz#efccbb795929631008dc08b21c5b34f6cb524b2a"
-  integrity sha512-37oaeT0GwwkIC8JUD5aToOr0ncdoml/kjZdsn5ckyKyZqpNQHYxhP3NhnqsSx25LpxGfJm8er/IPv9pzCLcfUA==
-
 webext-domain-permission-toggle@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/webext-domain-permission-toggle/-/webext-domain-permission-toggle-0.0.2.tgz#28003248699b869e5422b2ef60a7c2b03e1c3c15"
   integrity sha512-obPAEocq/5uw0jaKc1N2bwux/HXDaYz9/8ltvxTRqr0iR6JaTh6/h56FL9uoAZYXcXxjFyE+PRrJicoQrJ8T6g==
-
-webext-dynamic-content-scripts@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/webext-dynamic-content-scripts/-/webext-dynamic-content-scripts-5.0.1.tgz#aad7b14f9979ee5a79b2cb910969dc55732dbc5e"
-  integrity sha512-R0TPOV9B5hDnSlOTaxxEkuX3L8rm+8KQSWpdxAqE+yYv/YqaDXip+8M39v00jXGTkpz36YdAnGjRdnzHw7taOw==
-  dependencies:
-    webext-content-script-ping "^2.0.1"
 
 webext-options-sync@^0.15.2:
   version "0.15.2"

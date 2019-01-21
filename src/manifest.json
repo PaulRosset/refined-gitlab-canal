@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Refined Gitlab By Canal+",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage_url": "https://github.com",
   "description": "Add usefull features to the gitlab interface",
   "icons": {
@@ -28,7 +28,7 @@
   "content_scripts": [
     {
       "run_at": "document_start",
-      "matches": ["https://*/*"],
+      "matches": ["https://gitlab.com/*"],
       "js": ["content.js"]
     }
   ]

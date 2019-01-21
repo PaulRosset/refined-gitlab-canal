@@ -9,14 +9,22 @@
 
 <h1 align="center">Refined gitlab by Canal+</h1>
 
-> Browser extension that adds useful features on gitlab interface
+> Browser extension that adds useful features on gitlab interface for Canal+ team
 
 # Install
 
 # Features
 
+- `highlight-who-thumb` - Show who thumbups in the merge request dashboard.
+
 # Contribute
+
+Feel free to create an issue with your idea!
 
 # Related
 
+- Inspired by [Refined GitHub](https://github.com/sindresorhus/refined-github) - sindresorhus
+
 # License
+
+MIT License
