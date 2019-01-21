@@ -1,7 +1,7 @@
 export const getCleanPathname = () =>
   location.pathname.replace(/^[/]|[/]$/g, '');
 
-export const isPR = () => {
+export const isMR = () => {
   const splittedPath = getCleanPathname().split('/');
   return /^merge_requests/.test(splittedPath[splittedPath.length - 1]);
 };

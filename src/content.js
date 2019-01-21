@@ -2,6 +2,7 @@ import select from 'select-dom';
 
 // Features
 import displayUserWhoThumbMR from './features/highlight-who-thumb';
+import sortWipState from './features/sort-wip-state';
 
 // Utils Libs
 import * as pageDetect from './utils/page-detect';
@@ -16,9 +17,10 @@ function main() {
 
   document.documentElement.classList.add('refined-gitlab');
 
-  if (pageDetect.isPR()) {
+  if (pageDetect.isMR()) {
     displayUserWhoThumbMR();
+    sortWipState();
   }
 }
 
-main()
+main();
