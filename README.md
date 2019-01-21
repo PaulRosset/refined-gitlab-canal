@@ -16,6 +16,7 @@
 # Features
 
 - `highlight-who-thumb` - Show who thumbups in the merge request dashboard.
+- `sort-WIP-state` - Sort the (Work in progress) state by letting them on the bottom.
 
 # Contribute
 
