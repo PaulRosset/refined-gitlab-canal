@@ -6,6 +6,15 @@ export const isMR = () => {
   return /^merge_requests/.test(splittedPath[splittedPath.length - 1]);
 };
 
+export const isOnSpecificMR = () => {
+  const splittedPath = getCleanPathname().split('/');
+  return !isNaN(splittedPath[splittedPath.length - 1]);
+};
+
+export const isVariablePresentInURL = variable => {
+  return new URL(window.location.href).searchParams.get(variable);
+};
+
 export const getRepoName = metaTitle => {
   const splittedTitle = metaTitle.split('/');
   return splittedTitle[splittedTitle.length - 1].trim();
