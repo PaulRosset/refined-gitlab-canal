@@ -18,6 +18,20 @@
 - `highlight-who-thumb` - Show who thumbups in the merge request dashboard.
 - `sort-WIP-state` - Sort the (Work in progress) state by letting them on the bottom.
 
+# Disable features
+
+We let you the possibility to disable feature, if it doesnt fit your specific need, to do that, simply click on the extension logo specify which features you want to unenable.
+
+Format in the textArea should be of the following form:
+
+`nameofthefeaturetodisable,nameofthefeaturetodisable,...`
+
+Feature name:
+
+- `displayUserWhoThumbMR`
+- `sortWipState`
+- `replaceMrUrl`
+
 # Contribute
 
 Feel free to create an issue with your idea!

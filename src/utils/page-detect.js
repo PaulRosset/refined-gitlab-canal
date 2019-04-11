@@ -8,7 +8,10 @@ export const isMR = () => {
 
 export const isOnSpecificMR = () => {
   const splittedPath = getCleanPathname().split('/');
-  return !isNaN(splittedPath[splittedPath.length - 1]);
+  return (
+    splittedPath[splittedPath.length - 2] === 'merge_requests' &&
+    !isNaN(splittedPath[splittedPath.length - 1])
+  );
 };
 
 export const isVariablePresentInURL = variable => {

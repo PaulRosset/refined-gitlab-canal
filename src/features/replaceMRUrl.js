@@ -1,6 +1,6 @@
 import select from 'select-dom';
 
-function replaceMRUrl() {
+function replaceMrUrl() {
   const linkUrls = select.all('a[target=_blank]');
   const linkUrl = linkUrls.filter(node =>
     /\${source_branch_name\/\/\/}/gm.test(node.textContent)
@@ -21,4 +21,4 @@ function replaceMRUrl() {
   }
 }
 
-export default replaceMRUrl;
+export default replaceMrUrl;
