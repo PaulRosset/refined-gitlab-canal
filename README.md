@@ -17,6 +17,7 @@
 
 - `highlight-who-thumb` - Show who thumbups in the merge request dashboard.
 - `sort-WIP-state` - Sort the (Work in progress) state by letting them on the bottom.
+- `replaceMrUrl` - This is a special use case, but basically, it replace an url in a merge request to under the form `https://host.com/nameofthebranch/index.html`
 
 # Disable features
 
