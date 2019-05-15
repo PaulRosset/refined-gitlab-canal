@@ -19,7 +19,8 @@ async function populateChild(repoName, displayAvatarForThumbStruct) {
           .map(elem => (
             <img
               width="16"
-              class="avatar avatar-inline s16 js-lazy-loaded"
+              class="avatar avatar-inline s16 js-lazy-loaded has-tooltip"
+              data-original-title={elem.user.name}
               alt=""
               src={`${elem.user.avatar_url}?width=16`}
             />
@@ -36,7 +37,7 @@ async function displayUserWhoThumbMR() {
       upVotesDiv: elem,
       mrNumber: /([0-9]+)/.exec(
         select('.issuable-comments .has-tooltip', elem.parentNode).href
-      )[0]
+      )[0],
     }));
 
   if (displayAvatarForThumbStruct.length === 0) {
@@ -56,7 +57,7 @@ async function displayUserWhoThumbMR() {
       `projects?search=${repoName}&simple=true`
     );
     const projectIDStored = await set({
-      [repoName]: projects.data.filter(elem => elem.name === repoName)[0].id
+      [repoName]: projects.data.filter(elem => elem.name === repoName)[0].id,
     });
     populateChild(projectIDStored[repoName], displayAvatarForThumbStruct);
   }
