@@ -1,6 +1,6 @@
 {
   "name": "refined-gitlab-canal",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Refined gitlab Canal+",
   "main": "index.js",
   "author": "Paul Rosset <paulrosset96@gmail.com>",
