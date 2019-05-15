@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "copy-text-to-clipboard": "^2.1.0",
     "dom-chef": "^3.3.0",
     "select-dom": "^4.1.3",
     "webext-domain-permission-toggle": "^0.0.2",

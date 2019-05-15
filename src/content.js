@@ -5,6 +5,7 @@ import OptionsSync from 'webext-options-sync';
 import displayUserWhoThumbMR from './features/highlight-who-thumb';
 import sortWipState from './features/sort-wip-state';
 import replaceMrUrl from './features/replaceMRUrl';
+import copyMR from './features/copyMR';
 
 // Utils Libs
 import * as pageDetect from './utils/page-detect';
@@ -29,6 +30,7 @@ async function main() {
       enableFeature(await displayUserWhoThumbMR, disableFeatureSplit)();
       enableFeature(sortWipState, disableFeatureSplit)();
     }
+    enableFeature(copyMR, disableFeatureSplit)();
   }
 
   if (pageDetect.isOnSpecificMR()) {
