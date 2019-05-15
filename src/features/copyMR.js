@@ -16,6 +16,8 @@ function onclick(evt) {
 
 export default function copyMR() {
   select.all('.issuable-reference').forEach(elem => {
+    elem.setAttribute('data-original-title', 'Copy MR number!');
+    elem.className += ' has-tooltip';
     elem.style.textDecoration = 'underline';
     elem.style.fontWeight = 'bold';
     elem.style.cursor = 'pointer';
