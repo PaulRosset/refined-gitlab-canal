@@ -6,6 +6,7 @@ import displayUserWhoThumbMR from './features/highlight-who-thumb';
 import sortWipState from './features/sort-wip-state';
 import replaceMrUrl from './features/replaceMRUrl';
 import copyMR from './features/copyMR';
+import displayRecord from './features/bundlesizeRecord';
 
 // Utils Libs
 import * as pageDetect from './utils/page-detect';
@@ -35,6 +36,7 @@ async function main() {
 
   if (pageDetect.isOnSpecificMR()) {
     enableFeature(replaceMrUrl, disableFeatureSplit)();
+    enableFeature(await displayRecord, disableFeatureSplit)('preprod');
   }
 }
 
