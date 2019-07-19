@@ -1,9 +1,6 @@
 <div align="center">
-  <a href="https://about.gitlab.com/">
-    <img src="media/gitlab-logo-1-color-black-stacked-rgb.png" alt="gitlab logo" width="200" height="200">
-  </a>
   <a href="https://github.com/canalplus">
-    <img src="media/canal.png" alt="canal logo" width="200" height="200">
+    <img src="media/gitlab-noir.png" alt="canal logo" width="500" height="150">
   </a>
 </div>
 
@@ -19,6 +16,7 @@
 - `sort-WIP-state` - Sort the (Work in progress) state by letting them on the bottom.
 - `replaceMrUrl` - This is a special use case, but basically, it replace an url in a merge request to under the form `https://host.com/nameofthebranch/index.html`
 - `copyMR` - Permit to copy quickly the MR number of the Merge request panel
+- `displayRecordBundleSize` - In our CI, we are getting the bundlesize of the our current build, this feature is here to display the size of the build.
 
 # Disable features
 
@@ -34,6 +32,7 @@ Feature name:
 - `sortWipState`
 - `replaceMrUrl`
 - `copyMR`
+- `displayRecordBundleSize`
 
 # Contribute
 
