@@ -18,6 +18,7 @@
 - `copyMR` - Permit to copy quickly the MR number of the Merge request panel
 - `displayRecordBundleSize` - In our CI, we are getting the bundlesize of the our current build, this feature is here to display the size of the build.
 - `changeCountLabel` - Display the change count as label on the MR page.
+- `commute` - Display the commute of T2 and 126 bus (Issy to Versailles and Issy to StCloud)
 
 # Disable features
 
