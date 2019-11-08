@@ -36,6 +36,7 @@ Feature name:
 - `copyMR`
 - `displayRecordBundleSize`
 - `changeCountLabel`
+- `commute`
 
 # Contribute
 
