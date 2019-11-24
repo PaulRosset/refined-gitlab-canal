@@ -17,7 +17,7 @@ import { enableFeature } from "./utils/disable-feature";
 async function main() {
   if (select.exists("html.refined-gitlab")) {
     console.warn(
-      "Refined Gitlab has been loaded twice. If you didn’t install the developer version, this may be a bug. Please report it",
+      "Refined Gitlab has been loaded twice. If you didn’t install the developer version, this may be a bug. Please report it"
     );
     return;
   }
@@ -40,9 +40,18 @@ async function main() {
 
   if (pageDetect.isOnSpecificMR()) {
     enableFeature(replaceMrUrl, disableFeatureSplit)();
-    enableFeature(await displayRecordBundleSize, disableFeatureSplit)(
-      "preprod",
-    );
+    enableFeature(
+      await displayRecordBundleSize,
+      disableFeatureSplit
+    )("preprod");
+  }
+
+  if (pageDetect.isIssuePage()) {
+    // On Issue page list
+  }
+
+  if (pageDetect.isOnSpecificIssue()) {
+    // On specific issue page
   }
 }
 

@@ -17,6 +17,17 @@ export const isOnSpecificMR = () => {
   return indexMR > -1 && !isNaN(splittedPath[indexMR + 1]);
 };
 
+export const isIssuePage = () => {
+  const splittedPath = getCleanPathname().split("/");
+  return /^issues/.test(splittedPath[splittedPath.length - 1]);
+};
+
+export const isOnSpecificIssue = () => {
+  const splittedPath = getCleanPathname().split("/");
+  const indexMR = splittedPath.indexOf("issues");
+  return indexMR > -1 && !isNaN(splittedPath[indexMR + 1]);
+};
+
 export const isVariablePresentInURL = variable => {
   return new URL(window.location.href).searchParams.get(variable);
 };
@@ -28,7 +39,7 @@ export const getRepoName = metaTitle => {
 
 export const getCurrentProjectID = async () => {
   const repoName = getRepoName(
-    select("meta[property='og:title']").getAttribute("content"),
+    select("meta[property='og:title']").getAttribute("content")
   );
   const projectID = await get([repoName]);
   return projectID;
