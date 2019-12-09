@@ -18,6 +18,7 @@
 - `copyMR` - Permit to copy quickly the MR number of the Merge request panel
 - `displayRecordBundleSize` - In our CI, we are getting the bundlesize of the our current build, this feature is here to display the size of the build.
 - `changeCountLabel` - Display the change count as label on the MR page.
+- `applyPrettier` - You can use Prettier formatter inside GitLab for the Issue and Merge request creation.
 
 # Disable features
 
@@ -35,6 +36,7 @@ Feature name:
 - `copyMR`
 - `displayRecordBundleSize`
 - `changeCountLabel`
+- `applyPrettier`
 
 # Contribute
 
