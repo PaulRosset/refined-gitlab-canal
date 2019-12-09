@@ -14,7 +14,21 @@ export const isMR = () => {
 export const isOnSpecificMR = () => {
   const splittedPath = getCleanPathname().split("/");
   const indexMR = splittedPath.indexOf("merge_requests");
-  return indexMR > -1 && !isNaN(splittedPath[indexMR + 1]);
+  const isOnSpecificMR = indexMR > -1 && !isNaN(splittedPath[indexMR + 1]);
+  return [
+    isOnSpecificMR,
+    indexMR > -1 && splittedPath[splittedPath.length - 1] === "new",
+    isOnSpecificMR && splittedPath[splittedPath.length - 1] === "edit",
+  ];
+};
+
+export const isOnSpecificIssue = () => {
+  const splittedPath = getCleanPathname().split("/");
+  const indexIssue = splittedPath.indexOf("issues");
+  return [
+    indexIssue > -1 && !isNaN(splittedPath[indexIssue + 1]),
+    indexIssue > -1 && splittedPath[splittedPath.length - 1] === "new",
+  ];
 };
 
 export const isVariablePresentInURL = variable => {

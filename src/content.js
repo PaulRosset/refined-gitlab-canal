@@ -8,6 +8,7 @@ import sortWipState from "./features/sort-wip-state";
 import replaceMrUrl from "./features/replaceMRUrl";
 import copyMR from "./features/copyMR";
 import displayRecordBundleSize from "./features/bundlesizeRecord";
+import applyPrettier from "./features/applyPrettier";
 
 // Utils Libs
 import * as pageDetect from "./utils/page-detect";
@@ -36,12 +37,31 @@ async function main() {
     enableFeature(copyMR, disableFeatureSplit)();
   }
 
-  if (pageDetect.isOnSpecificMR()) {
+  const [
+    isOnSpecificMR,
+    isOnSpecificMRNew,
+    isOnSpecificMREdit,
+  ] = pageDetect.isOnSpecificMR();
+  const [
+    isOnSpecificIssue,
+    isOnSpecificIssueNew,
+  ] = pageDetect.isOnSpecificIssue();
+  if (isOnSpecificMR) {
     enableFeature(replaceMrUrl, disableFeatureSplit)();
     enableFeature(
       await displayRecordBundleSize,
       disableFeatureSplit,
     )("preprod");
+  }
+
+  if (
+    isOnSpecificMR ||
+    isOnSpecificMREdit ||
+    isOnSpecificMRNew ||
+    isOnSpecificIssueNew ||
+    isOnSpecificIssue
+  ) {
+    enableFeature(applyPrettier, disableFeatureSplit)(isOnSpecificIssue);
   }
 }
 
