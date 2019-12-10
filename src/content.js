@@ -8,7 +8,6 @@ import sortWipState from "./features/sort-wip-state";
 import replaceMrUrl from "./features/replaceMRUrl";
 import copyMR from "./features/copyMR";
 import displayRecordBundleSize from "./features/bundlesizeRecord";
-import commute from "./features/commute";
 
 // Utils Libs
 import * as pageDetect from "./utils/page-detect";
@@ -26,7 +25,6 @@ async function main() {
   const { disableFeature = "" } = await new OptionsSync().getAll();
   const disableFeatureSplit = disableFeature.split(",");
 
-  enableFeature(commute, disableFeatureSplit)();
   if (pageDetect.isMR()) {
     const stateMR = pageDetect.isVariablePresentInURL("state");
 
@@ -40,9 +38,10 @@ async function main() {
 
   if (pageDetect.isOnSpecificMR()) {
     enableFeature(replaceMrUrl, disableFeatureSplit)();
-    enableFeature(await displayRecordBundleSize, disableFeatureSplit)(
-      "preprod",
-    );
+    enableFeature(
+      await displayRecordBundleSize,
+      disableFeatureSplit,
+    )("preprod");
   }
 }
 
