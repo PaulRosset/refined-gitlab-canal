@@ -34,6 +34,9 @@ async function main() {
       enableFeature(changeCountLabel, disableFeatureSplit)();
       enableFeature(sortWipState, disableFeatureSplit)();
     }
+  }
+
+  if (pageDetect.isMR() || pageDetect.isListIssues()) {
     enableFeature(copyMR, disableFeatureSplit)();
   }
 
