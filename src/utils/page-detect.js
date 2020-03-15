@@ -11,6 +11,11 @@ export const isMR = () => {
   return /^merge_requests/.test(splittedPath[splittedPath.length - 1]);
 };
 
+export const isListIssues = () => {
+  const splittedPath = getCleanPathname().split("/");
+  return /^issues/.test(splittedPath[splittedPath.length - 1]);
+};
+
 export const isOnSpecificMR = () => {
   const splittedPath = getCleanPathname().split("/");
   const indexMR = splittedPath.indexOf("merge_requests");

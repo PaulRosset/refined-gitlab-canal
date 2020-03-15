@@ -6,21 +6,42 @@ import { getRepoName } from "../utils/page-detect";
 import { get, set } from "../utils/cache";
 
 async function populateChild(repoName, displayAvatarForThumbStruct) {
-  const { data: currentUser } = await fetch("get", "/user");
   for (const mR of displayAvatarForThumbStruct) {
-    const res = await fetch(
-      "get",
-      `projects/${repoName}/merge_requests/${mR.mrNumber}/award_emoji`,
-    );
+    const [
+      { data: currentUser },
+      awardEmojiRes,
+      discussionsRes,
+    ] = await Promise.all([
+      fetch("get", "/user"),
+      fetch(
+        "get",
+        `projects/${repoName}/merge_requests/${mR.mrNumber}/award_emoji`,
+      ),
+      fetch(
+        "get",
+        `projects/${repoName}/merge_requests/${mR.mrNumber}/discussions`,
+      ),
+    ]);
+    const isMRCommentedByUser = discussionsRes.data.some(discussion => {
+      for (let i = 0, len = discussion.notes.length; i < len; i += 1) {
+        return discussion.notes[i].author.username === currentUser.username;
+      }
+    });
     mR.upVotesDiv.style.textAlign = "center";
+    mR.upVotesDiv.style.borderBottom = "1px solid #1aaa55";
     mR.upVotesDiv.appendChild(
       <div className="highlight-who-thumb">
-        {res.data
+        {awardEmojiRes.data
           .filter(elem => elem.name === "thumbsup")
           .map(elem => {
-            if (elem.user.name === currentUser.name) {
+            if (elem.user.username === currentUser.username) {
               mR.upVotesDiv["title"] = "You Thumbed UP!";
               mR.upVotesDiv.children[0].style.color = "#1aaa55";
+              if (isMRCommentedByUser) {
+                mR.commentDiv.firstElementChild.lastElementChild.style.color =
+                  "#1aaa55";
+                mR.commentDiv.firstElementChild["title"] = "You commented!";
+              }
             }
             return (
               <img
@@ -45,6 +66,7 @@ async function displayUserWhoThumbMR() {
       mrNumber: /([0-9]+)/.exec(
         select(".issuable-comments .has-tooltip", elem.parentNode).href,
       )[0],
+      commentDiv: elem.parentNode.lastElementChild,
     }));
 
   if (displayAvatarForThumbStruct.length === 0) {
