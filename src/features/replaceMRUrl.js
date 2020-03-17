@@ -1,22 +1,22 @@
-import select from 'select-dom';
+import select from "select-dom";
 
 function replaceMrUrl() {
-  const linkUrls = select.all('a[target=_blank]');
-  const linkUrl = linkUrls.filter(node =>
+  const linkUrls = select.all("a[target=_blank]");
+  const linkUrl = linkUrls.find(node =>
     /\${source_branch_name\/\/\/}/gm.test(node.textContent)
   );
-  if (linkUrl.length === 1) {
+  if (linkUrl !== undefined) {
     const captureUrl = /\${source_branch_name\/\/\/}/gm.exec(
-      linkUrl[0].textContent
+      linkUrl.textContent
     );
     if (captureUrl) {
       const [capturedText] = captureUrl;
-      const replacedUrl = captureUrl.input.replace(
-        capturedText,
-        select('.label-branch a').textContent.replace('/', '')
-      );
-      linkUrl[0].innerHTML = replacedUrl;
-      linkUrl[0].href = replacedUrl;
+      const branchName = select("#merge-info-1")
+        .textContent.split('"')[1]
+        .replace("/", "");
+      const replacedUrl = captureUrl.input.replace(capturedText, branchName);
+      linkUrl.innerHTML = replacedUrl;
+      linkUrl.href = replacedUrl;
     }
   }
 }

@@ -1,3 +1,4 @@
+import { h } from "dom-chef";
 import select from "select-dom";
 import copy from "copy-text-to-clipboard";
 
@@ -12,12 +13,12 @@ function onclick(evt) {
   const isSuccess = copy(
     `[${nbMR}/${innerTextMr}](${window.location.origin}${
       window.location.pathname
-    }/${nbMR.replace("!", "")})`,
+    }/${nbMR.replace("!", "")})`
   );
   const elemtAdded = evt.target.appendChild(
     <div style={{ position: "absolute", color: "green" }}>
       {isSuccess ? "Copied!" : "Error!"}
-    </div>,
+    </div>
   );
   setTimeout(() => {
     evt.target.removeChild(elemtAdded);
