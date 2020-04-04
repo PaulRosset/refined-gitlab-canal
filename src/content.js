@@ -9,6 +9,7 @@ import replaceMrUrl from "./features/replaceMRUrl";
 import copyMR from "./features/copyMR";
 import displayRecordBundleSize from "./features/bundlesizeRecord";
 import applyPrettier from "./features/applyPrettier";
+import displayMRNameOnChanges from "./features/displayMRName";
 
 // Utils Libs
 import * as pageDetect from "./utils/page-detect";
@@ -17,7 +18,7 @@ import { enableFeature } from "./utils/disable-feature";
 async function main() {
   if (select.exists("html.refined-gitlab")) {
     console.warn(
-      "Refined Gitlab has been loaded twice. If you didn’t install the developer version, this may be a bug. Please report it",
+      "Refined Gitlab has been loaded twice. If you didn’t install the developer version, this may be a bug. Please report it"
     );
     return;
   }
@@ -50,10 +51,11 @@ async function main() {
     isOnSpecificIssueNew,
   ] = pageDetect.isOnSpecificIssue();
   if (isOnSpecificMR) {
+    enableFeature(displayMRNameOnChanges, disableFeatureSplit)();
     enableFeature(replaceMrUrl, disableFeatureSplit)();
     enableFeature(
       await displayRecordBundleSize,
-      disableFeatureSplit,
+      disableFeatureSplit
     )("preprod");
   }
 
