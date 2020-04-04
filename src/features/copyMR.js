@@ -6,6 +6,10 @@ function onclick(evt) {
   let innerTextMr = evt.target.offsetParent.innerText.split("\n");
   if (innerTextMr.length > 0) {
     innerTextMr = innerTextMr[0];
+    const matchedTextMr = innerTextMr.match(/(\s\d of [0-9]+ [a-z]+ [a-z]+$)/);
+    if (matchedTextMr !== null) {
+      innerTextMr = innerTextMr.substring(0, matchedTextMr.index).trim();
+    }
   } else {
     innerTextMr = "";
   }
@@ -13,10 +17,10 @@ function onclick(evt) {
   const isSuccess = copy(
     `[${nbMR}/${innerTextMr}](${window.location.origin}${
       window.location.pathname
-    }/${nbMR.replace("!", "")})`
+    }/${nbMR.replace(/!|#| /, "")})`
   );
   const elemtAdded = evt.target.appendChild(
-    <div style={{ position: "absolute", color: "green" }}>
+    <div style={{ position: "absolute", color: isSuccess ? "green" : "red" }}>
       {isSuccess ? "Copied!" : "Error!"}
     </div>
   );
@@ -26,7 +30,7 @@ function onclick(evt) {
 }
 
 export default function copyMR() {
-  select.all(".issuable-reference").forEach(elem => {
+  select.all(".issuable-reference").forEach((elem) => {
     elem.setAttribute("data-original-title", "Copy URL as MD link!");
     elem.className += " has-tooltip";
     elem.style.textDecoration = "underline";
