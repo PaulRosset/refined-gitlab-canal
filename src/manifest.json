@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Refined Gitlab By Canal+",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "homepage_url": "https://github.com/PaulRosset/refined-gitlab-canal",
   "description": "Add useful features to the Gitlab interface by Canal+",
   "icons": {
