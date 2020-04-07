@@ -10,6 +10,8 @@
 
 # Install
 
+[Chrome extension](https://chrome.google.com/webstore/detail/refined-gitlab-by-canal%20/ikaokifbikfffdgfkbhogdibaddhjfad)
+
 # Features
 
 - `highlight-who-thumb` - Show who thumbups in the merge request dashboard.
