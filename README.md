@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/canalplus">
-    <img src="media/gitlab-noir.png" alt="canal logo" width="500" height="150">
+    <img src="src/gitlab-logo.png" alt="canal logo" width="500" height="150">
   </a>
 </div>
 
