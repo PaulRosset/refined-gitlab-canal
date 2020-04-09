@@ -17,7 +17,7 @@
 - `highlight-who-thumb` - Show who thumbups in the merge request dashboard.
 - `sort-WIP-state` - Sort the (Work in progress) state by letting them on the bottom.
 - `replaceMrUrl` - This is a special use case, but basically, it replace an url in a merge request to under the form `https://host.com/nameofthebranch/index.html`
-- `copyMR` - Permit to copy quickly the MR number of the Merge request panel
+- `copyMR` - Permit to copy quickly the MR/Issues number of the Merge request panel and the issues panel
 - `displayRecordBundleSize` - In our CI, we are getting the bundlesize of the our current build, this feature is here to display the size of the build.
 - `changeCountLabel` - Display the change count as label on the MR page.
 - `applyPrettier` - You can use Prettier formatter inside GitLab for the Issue and Merge request creation.
