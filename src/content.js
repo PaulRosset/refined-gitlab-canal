@@ -10,6 +10,7 @@ import copyMR from "./features/copyMR";
 import displayRecordBundleSize from "./features/bundlesizeRecord";
 import applyPrettier from "./features/applyPrettier";
 import displayMRNameOnChanges from "./features/displayMRName";
+import displayUnresolvedThreads from "./features/displayUnresolvedThreads";
 
 // Utils Libs
 import * as pageDetect from "./utils/page-detect";
@@ -34,6 +35,7 @@ async function main() {
       enableFeature(await displayUserWhoThumbMR, disableFeatureSplit)();
       enableFeature(changeCountLabel, disableFeatureSplit)();
       enableFeature(sortWipState, disableFeatureSplit)();
+      enableFeature(await displayUnresolvedThreads, disableFeatureSplit)();
     }
   }
 
