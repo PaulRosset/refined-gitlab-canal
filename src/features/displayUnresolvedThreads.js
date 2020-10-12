@@ -7,32 +7,28 @@ import { get, set } from "../utils/cache";
 
 async function populateChild(repoName, displayUnresolvedThreadsStruct) {
   for (const mR of displayUnresolvedThreadsStruct) {
-    const discussionsRes = await fetch(
+    const { data: discussionsRes } = await fetch(
       "get",
       `projects/${repoName}/merge_requests/${mR.mrNumber}/discussions`
     );
 
-    const numOfOpenedThreads = discussionsRes.data.reduce(
-      (total, discussion) => {
-        if (discussion.notes[0].resolvable && !discussion.notes[0].resolved) {
-          total++;
-        }
-        return total;
-      },
-      0
-    );
-    if (numOfOpenedThreads === 0) {
-      return;
+    const numOfOpenedThreads = discussionsRes.reduce((total, discussion) => {
+      if (discussion.notes[0].resolvable && !discussion.notes[0].resolved) {
+        total++;
+      }
+      return total;
+    }, 0);
+    if (numOfOpenedThreads !== 0) {
+      mR.commentDiv.appendChild(
+        <span
+          class="has-tooltip"
+          data-original-title={`${numOfOpenedThreads} unresolved threads`}
+          style={{ color: "red" }}
+        >
+          ({numOfOpenedThreads})
+        </span>
+      );
     }
-    mR.commentDiv.appendChild(
-      <span
-        class="has-tooltip"
-        data-original-title={`${numOfOpenedThreads} unresolved threads`}
-        style={{ color: "red" }}
-      >
-        ({numOfOpenedThreads})
-      </span>
-    );
   }
 }
 
