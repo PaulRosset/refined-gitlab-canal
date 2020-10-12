@@ -32,9 +32,9 @@ async function main() {
     const stateMR = pageDetect.isVariablePresentInURL("state");
 
     if (stateMR === "opened" || !stateMR) {
-      enableFeature(await displayUserWhoThumbMR, disableFeatureSplit)();
       enableFeature(changeCountLabel, disableFeatureSplit)();
       enableFeature(sortWipDraftState, disableFeatureSplit)();
+      enableFeature(await displayUserWhoThumbMR, disableFeatureSplit)();
       enableFeature(await displayUnresolvedThreads, disableFeatureSplit)();
     }
   }

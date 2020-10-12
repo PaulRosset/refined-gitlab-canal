@@ -25,7 +25,7 @@
 
 # Disable features
 
-We let you the possibility to disable feature, if it doesnt fit your specific need, to do that, simply click on the extension logo specify which features you want to unenable.
+We let you the possibility to disable feature, if it doesnt fit your specific need, to do that, simply click on the extension logo and specify which features you want to unenable in the **textarea**.
 
 Format in the textArea should be of the following form:
 
@@ -34,7 +34,7 @@ Format in the textArea should be of the following form:
 Feature name:
 
 - `displayUserWhoThumbMR`
-- `sortWipState`
+- `sortWipDraftState`
 - `replaceMrUrl`
 - `copyMR`
 - `displayRecordBundleSize`

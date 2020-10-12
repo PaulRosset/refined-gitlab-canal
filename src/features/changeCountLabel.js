@@ -32,12 +32,14 @@ async function populateChild(repoName, getMergeRequestContainerForLabel) {
           color: "#fff",
           backgroundColor: chooseColorDependingOnChangesNumber(changes_count),
           fontSize: "12.5px",
-          verticalAlign: "initial"
+          verticalAlign: "initial",
         }}
       >
-        {changes_count > 1
-          ? `Changes: ${changes_count}`
-          : `Change: ${changes_count}`}
+        {!!changes_count
+          ? changes_count > 1
+            ? `Changes: ${changes_count}`
+            : `Change: ${changes_count}`
+          : "No Change"}
       </span>
     );
   }
@@ -46,11 +48,11 @@ async function populateChild(repoName, getMergeRequestContainerForLabel) {
 export default async function notifyChangeCountForCurrentMR() {
   const getMergeRequestContainerForLabel = select
     .all(".mr-list .merge-request .issuable-info")
-    .map(elem => ({
+    .map((elem) => ({
       mergeRequestDiv: elem,
       mrNumber: /([0-9]+)/.exec(
         elem.firstChild.nextSibling.firstChild.textContent
-      )[0]
+      )[0],
     }));
 
   if (getMergeRequestContainerForLabel.length === 0) {
@@ -70,7 +72,7 @@ export default async function notifyChangeCountForCurrentMR() {
       `projects?search=${repoName}&simple=true`
     );
     const projectIDStored = await set({
-      [repoName]: projects.data.filter(elem => elem.name === repoName)[0].id
+      [repoName]: projects.data.filter((elem) => elem.name === repoName)[0].id,
     });
     populateChild(projectIDStored[repoName], getMergeRequestContainerForLabel);
   }

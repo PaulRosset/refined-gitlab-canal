@@ -7,42 +7,17 @@ import { get, set } from "../utils/cache";
 
 async function populateChild(repoName, displayAvatarForThumbStruct) {
   for (const mR of displayAvatarForThumbStruct) {
-    const [
-      { data: currentUser },
-      awardEmojiRes,
-      discussionsRes,
-    ] = await Promise.all([
-      fetch("get", "/user"),
-      fetch(
-        "get",
-        `projects/${repoName}/merge_requests/${mR.mrNumber}/award_emoji`,
-      ),
-      fetch(
-        "get",
-        `projects/${repoName}/merge_requests/${mR.mrNumber}/discussions`,
-      ),
-    ]);
-    const isMRCommentedByUser = discussionsRes.data.some(discussion => {
-      for (let i = 0, len = discussion.notes.length; i < len; i += 1) {
-        return discussion.notes[i].author.username === currentUser.username;
-      }
-    });
+    const { data: awardEmojiRes } = await fetch(
+      "get",
+      `projects/${repoName}/merge_requests/${mR.mrNumber}/award_emoji`
+    );
     mR.upVotesDiv.style.textAlign = "center";
     mR.upVotesDiv.style.borderBottom = "1px solid #1aaa55";
     mR.upVotesDiv.appendChild(
       <div className="highlight-who-thumb">
-        {awardEmojiRes.data
-          .filter(elem => elem.name === "thumbsup")
-          .map(elem => {
-            if (elem.user.username === currentUser.username) {
-              mR.upVotesDiv["title"] = "You Thumbed UP!";
-              mR.upVotesDiv.children[0].style.color = "#1aaa55";
-              if (isMRCommentedByUser) {
-                mR.commentDiv.firstElementChild.lastElementChild.style.color =
-                  "#1aaa55";
-                mR.commentDiv.firstElementChild["title"] = "You commented!";
-              }
-            }
+        {awardEmojiRes
+          .filter((elem) => elem.name === "thumbsup")
+          .map((elem) => {
             return (
               <img
                 width="16"
@@ -53,7 +28,7 @@ async function populateChild(repoName, displayAvatarForThumbStruct) {
               />
             );
           })}
-      </div>,
+      </div>
     );
   }
 }
@@ -61,10 +36,10 @@ async function populateChild(repoName, displayAvatarForThumbStruct) {
 async function displayUserWhoThumbMR() {
   const displayAvatarForThumbStruct = select
     .all(".mr-list .merge-request .controls .issuable-upvotes")
-    .map(elem => ({
+    .map((elem) => ({
       upVotesDiv: elem,
       mrNumber: /([0-9]+)/.exec(
-        select(".issuable-comments .has-tooltip", elem.parentNode).href,
+        select(".issuable-comments .has-tooltip", elem.parentNode).href
       )[0],
       commentDiv: elem.parentNode.lastElementChild,
     }));
@@ -74,7 +49,7 @@ async function displayUserWhoThumbMR() {
   }
 
   const repoName = getRepoName(
-    select("meta[property='og:title']").getAttribute("content"),
+    select("meta[property='og:title']").getAttribute("content")
   );
 
   const projectID = await get([repoName]);
@@ -83,10 +58,10 @@ async function displayUserWhoThumbMR() {
   } else {
     const projects = await fetch(
       "get",
-      `projects?search=${repoName}&simple=true`,
+      `projects?search=${repoName}&simple=true`
     );
     const projectIDStored = await set({
-      [repoName]: projects.data.filter(elem => elem.name === repoName)[0].id,
+      [repoName]: projects.data.filter((elem) => elem.name === repoName)[0].id,
     });
     populateChild(projectIDStored[repoName], displayAvatarForThumbStruct);
   }
