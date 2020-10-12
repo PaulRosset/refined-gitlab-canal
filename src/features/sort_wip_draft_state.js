@@ -10,10 +10,10 @@ function sortWipDraftState() {
       return { text, mrEntry };
     })
     .sort((a, b) => {
-      const isDraftA = a.text.indexOf("Draft:");
-      const isWipA = a.text.indexOf("WIP:");
-      const isDraftB = b.text.indexOf("Draft:");
-      const isWipB = b.text.indexOf("WIP:");
+      const isDraftA = a.text.indexOf("Draft");
+      const isWipA = a.text.indexOf("WIP");
+      const isDraftB = b.text.indexOf("Draft");
+      const isWipB = b.text.indexOf("WIP");
 
       return isDraftA + isWipA - (isDraftB + isWipB);
     })
