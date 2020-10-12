@@ -4,7 +4,7 @@ import OptionsSync from "webext-options-sync";
 // Features
 import displayUserWhoThumbMR from "./features/highlight-who-thumb";
 import changeCountLabel from "./features/changeCountLabel";
-import sortWipState from "./features/sort-wip-state";
+import sortWipDraftState from "./features/sort_wip_draft_state";
 import replaceMrUrl from "./features/replaceMRUrl";
 import copyMR from "./features/copyMR";
 import displayRecordBundleSize from "./features/bundlesizeRecord";
@@ -34,7 +34,7 @@ async function main() {
     if (stateMR === "opened" || !stateMR) {
       enableFeature(await displayUserWhoThumbMR, disableFeatureSplit)();
       enableFeature(changeCountLabel, disableFeatureSplit)();
-      enableFeature(sortWipState, disableFeatureSplit)();
+      enableFeature(sortWipDraftState, disableFeatureSplit)();
       enableFeature(await displayUnresolvedThreads, disableFeatureSplit)();
     }
   }
