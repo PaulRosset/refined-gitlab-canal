@@ -21,6 +21,7 @@
 - `displayRecordBundleSize` - In our CI, we are getting the bundlesize of the our current build, this feature is here to display the size of the build.
 - `changeCountLabel` - Display the change count as label on the MR page.
 - `applyPrettier` - You can use Prettier formatter inside GitLab for the Issue and Merge request creation.
+- `displayUnresolvedThreads` - Display the count of unresolved threads of a MR on the MR list page
 
 # Disable features
 
@@ -39,6 +40,7 @@ Feature name:
 - `displayRecordBundleSize`
 - `changeCountLabel`
 - `applyPrettier`
+- `displayUnresolvedThreads`
 
 # Contribute
 
