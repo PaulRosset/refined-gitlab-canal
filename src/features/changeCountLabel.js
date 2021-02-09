@@ -1,5 +1,6 @@
 import { h } from "dom-chef";
 import select from "select-dom";
+import copy from "copy-text-to-clipboard";
 
 import fetch from "../utils/api";
 import { getRepoName } from "../utils/page-detect";
@@ -16,13 +17,32 @@ function chooseColorDependingOnChangesNumber(changeCount) {
   }
 }
 
+function onClick(branchName, targetToInsertNotif) {
+  const isSuccess = copy(branchName);
+  const elemtAdded = targetToInsertNotif.appendChild(
+    <div
+      style={{
+        position: "absolute",
+        display: "inline",
+        color: isSuccess ? "green" : "red",
+      }}
+    >
+      {isSuccess ? `${branchName} Copied!` : "Error!"}
+    </div>
+  );
+  setTimeout(() => {
+    targetToInsertNotif.removeChild(elemtAdded);
+  }, 2000);
+}
+
 async function populateChild(repoName, getMergeRequestContainerForLabel) {
   for (const mR of getMergeRequestContainerForLabel) {
-    const res = await fetch(
+    const {
+      data: { changes_count, source_branch },
+    } = await fetch(
       "get",
       `projects/${repoName}/merge_requests/${mR.mrNumber}`
     );
-    const changes_count = res.data.changes_count;
     mR.mergeRequestDiv.appendChild(
       <span
         className="badge"
@@ -40,6 +60,26 @@ async function populateChild(repoName, getMergeRequestContainerForLabel) {
             ? `Changes: ${changes_count}`
             : `Change: ${changes_count}`
           : "No Change"}
+      </span>
+    );
+    mR.mergeRequestDiv.appendChild(
+      <span
+        onclick={() => onClick(source_branch, mR.mergeRequestDiv)}
+        className="badge has-tooltip"
+        data-original-title="Copy Branch Name!"
+        style={{
+          lineHeight: "8px",
+          borderRadius: "100px",
+          color: "#fff",
+          backgroundColor: "#2185d0",
+          fontSize: "12.5px",
+          verticalAlign: "initial",
+          margin: "0 5px",
+          cursor: "pointer",
+          textDecoration: "underline",
+        }}
+      >
+        copy-mr-branch
       </span>
     );
   }
