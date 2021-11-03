@@ -1,4 +1,4 @@
-import DPT from 'webext-domain-permission-toggle';
+import addDomainPermissionToggle from 'webext-domain-permission-toggle';
 
 chrome.tabs.onUpdated.addListener((tabId, { status }) => {
   if (status === 'complete') {
@@ -15,4 +15,4 @@ chrome.tabs.onUpdated.addListener((tabId, { status }) => {
 });
 
 // For custom domain permissions
-DPT.addContextMenu();
+addDomainPermissionToggle();
