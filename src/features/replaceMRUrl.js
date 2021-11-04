@@ -11,8 +11,8 @@ function replaceMrUrl() {
     );
     if (captureUrl) {
       const [capturedText] = captureUrl;
-      const branchName = select("#merge-info-1")
-        .textContent.split('"')[1]
+      const branchName = select("[data-testid='ref-name']")
+        .textContent
         .replace("/", "");
       const replacedUrl = captureUrl.input.replace(capturedText, branchName);
       linkUrl.innerHTML = replacedUrl;

@@ -22,7 +22,7 @@ const onClick = ({ branchName, status, customSpan }) => {
 export default function displayMRNameOnChanges() {
   let status = null;
   const mrTabsUl = select(".merge-request-tabs");
-  const branchName = select("#merge-info-1").textContent.split('"')[1];
+  const branchName = select("[data-testid='ref-name']").textContent;
   const customSpan = (
     <span style={{ fontWeight: "bold", color: "#1B69B6" }}>{branchName}</span>
   );
@@ -32,7 +32,7 @@ export default function displayMRNameOnChanges() {
       style={{ alignItems: "flex-end" }}
       onClick={() => onClick({ branchName, status, customSpan })}
     >
-      <button class="has-tooltip" data-original-title="Copy Branch name">
+      <button class="has-tooltip" title="Copy Branch name">
         {customSpan}
         <img
           alt="Copie icon"

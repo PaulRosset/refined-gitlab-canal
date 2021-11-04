@@ -31,7 +31,7 @@ function onclick(evt) {
 
 export default function copyMR() {
   select.all(".issuable-reference").forEach((elem) => {
-    elem.setAttribute("data-original-title", "Copy URL as MD link!");
+    elem.setAttribute("title", "Copy URL as MD link!");
     elem.className += " has-tooltip";
     elem.style.textDecoration = "underline";
     elem.style.fontWeight = "bold";
