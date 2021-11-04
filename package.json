@@ -11,7 +11,7 @@
     "deploy": "yarn build && zip -r build-$npm_package_version.zip build/"
   },
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.21.2",
     "copy-text-to-clipboard": "2.2.0",
     "dom-chef": "4.2.2",
     "prettier": "2.1.2",
